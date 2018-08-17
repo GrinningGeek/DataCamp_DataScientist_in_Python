@@ -32,8 +32,11 @@ THIS CODE REQUIRES NETWORKX 1.11 TO WORK
 import networkx as nx
 
 #This step performed for you on DataCamp...
-T = nx.read_gpickle("ego-twitter.p")
-print("The Twitter network has been loaded as 'T'")
+#Data path
+path="E:/DataCamp/22_Network_Analysis_in_Python_Part_1/Data/ego-twitter.p"
+
+T = nx.read_gpickle(path)
+print( "The Twitter network has been loaded as T.")
 
 # Set the weight of the edge
 T.edge[1][10]['weight'] = 2

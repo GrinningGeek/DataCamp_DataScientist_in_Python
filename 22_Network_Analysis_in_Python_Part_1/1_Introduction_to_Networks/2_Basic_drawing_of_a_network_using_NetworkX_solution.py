@@ -22,7 +22,11 @@ import matplotlib.pyplot as plt
 import networkx as nx
 
 #This step performed for you on DataCamp...
-T = nx.read_gpickle("ego-twitter.p")
+#Data path
+path="E:/DataCamp/22_Network_Analysis_in_Python_Part_1/Data/ego-twitter.p"
+
+T = nx.read_gpickle(path)
+print( "The Twitter network has been loaded as T.")
 T_sub = T.subgraph(list(range(0,50)))
 
 # Draw the graph to screen

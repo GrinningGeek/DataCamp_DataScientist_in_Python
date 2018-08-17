@@ -22,6 +22,11 @@ ____
 ____
 
 #This step performed for you in the background on DataCamp...
+#Data path
+path="E:/DataCamp/22_Network_Analysis_in_Python_Part_1/Data/ego-twitter.p"
+
+T = nx.read_gpickle(path)
+print( "The Twitter network has been loaded as T.")
 T = nx.read_gpickle("ego-twitter.p")
 T_sub = T.subgraph(list(range(0,50)))
 
