@@ -1,15 +1,31 @@
 '''
 Decorrelating the grain measurements with PCA
 
-You observed in the previous exercise that the width and length measurements of the grain are correlated. Now, you'll use PCA to decorrelate these measurements, then plot the decorrelated points and measure their Pearson correlation.
+You observed in the previous exercise that the width and length measurements of 
+the grain are correlated. Now, you'll use PCA to decorrelate these 
+measurements, then plot the decorrelated points and measure their Pearson 
+correlation.
 
 INSTRUCTIONS
 100XP
 Import PCA from sklearn.decomposition.
 Create an instance of PCA called model.
-Use the .fit_transform() method of model to apply the PCA transformation to grains. Assign the result to pca_features.
-The subsequent code to extract, plot, and compute the Pearson correlation of the first two columns pca_features has been written for you, so hit 'Submit Answer' to see the result!
+Use the .fit_transform() method of model to apply the PCA transformation to 
+grains. Assign the result to pca_features.
+The subsequent code to extract, plot, and compute the Pearson correlation of 
+the first two columns pca_features has been written for you, so hit 
+'Submit Answer' to see the result!
 '''
+#Done by DataCamp
+import pandas as pd
+import matplotlib.pyplot as plt
+from scipy.stats import pearsonr
+
+
+grains = pd.read_csv('E:/DataCamp/Unsupervised-learning-in-python/data/Grains/seeds-width-vs-length.csv',
+                     header=None)
+#End done by DataCamp
+
 # Import PCA
 from sklearn.decomposition import PCA
 

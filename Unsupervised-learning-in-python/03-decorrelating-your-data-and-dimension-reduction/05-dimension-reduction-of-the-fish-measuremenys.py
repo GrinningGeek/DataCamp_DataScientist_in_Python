@@ -1,17 +1,41 @@
 '''
 Dimension reduction of the fish measurements
 
-In a previous exercise, you saw that 2 was a reasonable choice for the "intrinsic dimension" of the fish measurements. Now use PCA for dimensionality reduction of the fish measurements, retaining only the 2 most important components.
+In a previous exercise, you saw that 2 was a reasonable choice for the 
+"intrinsic dimension" of the fish measurements. Now use PCA for dimensionality 
+reduction of the fish measurements, retaining only the 2 most important 
+components.
 
-The fish measurements have already been scaled for you, and are available as scaled_samples.
+The fish measurements have already been scaled for you, and are available as 
+scaled_samples.
 
 INSTRUCTIONS
 100XP
 Import PCA from sklearn.decomposition.
 Create a PCA instance called pca with n_components=2.
-Use the .fit() method of pca to fit it to the scaled fish measurements scaled_samples.
-Use the .transform() method of pca to transform the scaled_samples. Assign the result to pca_features.
+Use the .fit() method of pca to fit it to the scaled fish measurements 
+scaled_samples.
+Use the .transform() method of pca to transform the scaled_samples. Assign the 
+result to pca_features.
 '''
+#Done by DataCamp
+import pandas as pd
+
+samples = pd.read_csv('E:/DataCamp/Unsupervised-learning-in-python/data/fish.csv',
+                     header=None)
+
+scaled_samples = samples.iloc[:,1:]
+
+from sklearn.preprocessing import StandardScaler
+
+scaler = StandardScaler()
+
+scaled_samples[scaled_samples.columns] = scaler.fit_transform(scaled_samples[scaled_samples.columns])
+
+scaled_samples = scaled_samples.values
+#End done by DataCamp
+
+
 # Import PCA
 from sklearn.decomposition import PCA
 
