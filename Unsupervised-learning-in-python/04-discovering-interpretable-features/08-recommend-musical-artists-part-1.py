@@ -29,12 +29,34 @@ Apply the .fit_transform() method of pipeline to artists. Assign the result to
 norm_features.
 '''
 #Done by DataCamp
-import pandas as pd
 from scipy.sparse import csr_matrix
-df = pd.read_csv('E:/DataCamp/Unsupervised-learning-in-python/data/Musical_artists/sparse_artists.csv', 
-                 index_col=0, header=None)
+import numpy as np
 
-artists = csr_matrix(df)
+music=np.genfromtxt('E:/DataCamp/Unsupervised-learning-in-python/data/Musical_artists/scrobbler-small-sample.csv', 
+                    delimiter=',',
+                    names=True,
+                    dtype=int)
+
+X = music['user_offset']
+Y = music['artist_offset']
+Z = music['playcount']
+
+def make_music_grid(x, y, z):
+    '''
+    Takes x, y, z values as lists and returns a 2D numpy array
+    Fill with zeros
+    Transpose
+    '''
+    
+    grid = np.nan * np.empty((len(set(x)),len(set(y))))
+    grid[x, y] = z 
+    grid[np.isnan(grid)] = 0
+    return grid.T
+
+matrix = make_music_grid(X,Y,Z)                            
+
+
+artists = csr_matrix(matrix)
 artists.todense()
 #End done by DataCamp
 
