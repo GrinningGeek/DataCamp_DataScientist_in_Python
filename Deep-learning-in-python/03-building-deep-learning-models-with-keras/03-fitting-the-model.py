@@ -1,12 +1,38 @@
 '''
 Fitting the model
 
-You're at the most fun part. You'll now fit the model. Recall that the data to be used as predictive features is loaded in a NumPy matrix called predictors and the data to be predicted is stored in a NumPy matrix called target. Your model is pre-written and it has been compiled with the code from the previous exercise.
+You're at the most fun part. You'll now fit the model. Recall that the data to 
+be used as predictive features is loaded in a NumPy matrix called predictors 
+and the data to be predicted is stored in a NumPy matrix called target. Your 
+model is pre-written and it has been compiled with the code from the previous 
+exercise.
 
 INSTRUCTIONS
 100XP
-Fit the model. Remember that the first argument is the predictive features (predictors), and the data to be predicted (target) is the second argument.
+Fit the model. Remember that the first argument is the predictive features 
+(predictors), and the data to be predicted (target) is the second argument.
 '''
+#Done by DataCamp
+#HAVE TO SET PYTHONHASH=0 in interpreter
+#CUDA_VISIBLE_DEVICES=""
+
+from numpy.random import seed
+seed(1)
+from tensorflow import set_random_seed
+set_random_seed(2)
+ 
+
+import pandas as pd
+df = pd.read_csv('E:/DataCamp/Deep-learning-in-python/data/hourly_wages.csv')
+
+target = df.pop('wage_per_hour')
+
+target = target.values
+
+predictors = df.values
+
+#End done by DataCamp
+
 # Import necessary modules
 import keras
 from keras.layers import Dense
@@ -23,4 +49,4 @@ model.add(Dense(1))
 model.compile(optimizer='adam', loss='mean_squared_error')
 
 # Fit the model
-model.fit(predictors, target)
+model.fit(predictors, target, epochs=10, shuffle=False)

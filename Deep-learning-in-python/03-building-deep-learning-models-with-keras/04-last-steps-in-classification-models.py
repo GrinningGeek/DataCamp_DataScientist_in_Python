@@ -1,21 +1,50 @@
 '''
 Last steps in classification models
 
-You'll now create a classification model using the titanic dataset, which has been pre-loaded into a DataFrame called df. You'll take information about the passengers and predict which ones survived.
+You'll now create a classification model using the titanic dataset, which has 
+been pre-loaded into a DataFrame called df. You'll take information about the 
+passengers and predict which ones survived.
 
-The predictive variables are stored in a NumPy array predictors. The target to predict is in df.survived, though you'll have to manipulate it for keras. The number of predictive features is stored in n_cols.
+The predictive variables are stored in a NumPy array predictors. The target to 
+predict is in df.survived, though you'll have to manipulate it for keras. The 
+number of predictive features is stored in n_cols.
 
-Here, you'll use the 'sgd' optimizer, which stands for Stochastic Gradient Descent. You'll learn more about this in the next chapter!
+Here, you'll use the 'sgd' optimizer, which stands for Stochastic Gradient 
+Descent. You'll learn more about this in the next chapter!
 
 INSTRUCTIONS
 100XP
-Convert df.survived to a categorical variable using the to_categorical() function.
+Convert df.survived to a categorical variable using the to_categorical() 
+function.
 Specify a Sequential model called model.
-Add a Dense layer with 32 nodes. Use 'relu' as the activation and (n_cols,) as the input_shape.
-Add the Dense output layer. Because there are two outcomes, it should have 2 units, and because it is a classification model, the activation should be 'softmax'.
-Compile the model, using 'sgd' as the optimizer, 'categorical_crossentropy' as the loss function, and metrics=['accuracy'] to see the accuracy (what fraction of predictions were correct) at the end of each epoch.
+Add a Dense layer with 32 nodes. Use 'relu' as the activation and (n_cols,) as 
+the input_shape.
+Add the Dense output layer. Because there are two outcomes, it should have 2 
+units, and because it is a classification model, the activation should be 
+'softmax'.
+Compile the model, using 'sgd' as the optimizer, 'categorical_crossentropy' 
+as the loss function, and metrics=['accuracy'] to see the accuracy 
+(what fraction of predictions were correct) at the end of each epoch.
 Fit the model using the predictors and the target.
 '''
+#Done by DataCamp
+#HAVE TO SET PYTHONHASH=0 in interpreter
+#CUDA_VISIBLE_DEVICES=""
+
+from numpy.random import seed
+seed(1)
+from tensorflow import set_random_seed
+set_random_seed(2)
+
+import pandas as pd
+
+df = pd.read_csv('E:/DataCamp/Deep-learning-in-python/data/titanic_all_numeric.csv')
+
+predictors = df.loc[:, df.columns != 'survived']
+
+n_cols = len(predictors.columns)
+#End done by DataCamp
+
 # Import necessary modules
 import keras
 from keras.layers import Dense
@@ -38,4 +67,4 @@ model.add(Dense(2, activation='softmax'))
 model.compile(optimizer='sgd', loss='categorical_crossentropy', metrics=['accuracy'])
 
 # Fit the model
-model.fit(predictors, target)
+model.fit(predictors, target, epochs=10)
