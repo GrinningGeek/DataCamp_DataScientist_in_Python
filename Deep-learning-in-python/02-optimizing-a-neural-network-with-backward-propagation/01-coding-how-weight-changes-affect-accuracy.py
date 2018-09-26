@@ -1,23 +1,58 @@
 '''
 Coding how weight changes affect accuracy
 
-Now you'll get to change weights in a real network and see how they affect model accuracy!
+Now you'll get to change weights in a real network and see how they affect 
+model accuracy!
 
 Have a look at the following neural network: Ch2Ex4
 
-Its weights have been pre-loaded as weights_0. Your task in this exercise is to update a single weight in weights_0 to create weights_1, which gives a perfect prediction (in which the predicted value is equal to target_actual: 3).
+Its weights have been pre-loaded as weights_0. Your task in this exercise is 
+to update a single weight in weights_0 to create weights_1, which gives a 
+perfect prediction (in which the predicted value is equal to target_actual: 3).
 
-Use a pen and paper if necessary to experiment with different combinations. You'll use the predict_with_network() function, which takes an array of data as the first argument, and weights as the second argument.
+Use a pen and paper if necessary to experiment with different combinations. 
+You'll use the predict_with_network() function, which takes an array of data 
+as the first argument, and weights as the second argument.
 
 INSTRUCTIONS
 100XP
 INSTRUCTIONS
 100XP
-Create a dictionary of weights called weights_1 where you have changed 1 weight from weights_0 (You only need to make 1 edit to weights_0 to generate the perfect prediction).
-Obtain predictions with the new weights using the predict_with_network() function with input_data and weights_1.
-Calculate the error for the new weights by subtracting target_actual from model_output_1.
+Create a dictionary of weights called weights_1 where you have changed 1 
+weight from weights_0 (You only need to make 1 edit to weights_0 to generate 
+the perfect prediction).
+Obtain predictions with the new weights using the predict_with_network() 
+function with input_data and weights_1.
+Calculate the error for the new weights by subtracting target_actual from 
+model_output_1.
 Hit 'Submit Answer' to see how the errors compare!
 '''
+#Done by DataCamp
+import numpy as np
+
+weights_0 = {'node_0': [2, 1], 'node_1': [1, 2], 'output': [1, 1]}
+
+input_data = np.array([0, 3])
+
+def relu(input):
+    output = max(0, input)
+    return output
+
+def predict_with_network(input_data_point, weights):
+    node_0_input = (input_data * weights['node_0']).sum()
+    node_0_output = relu(node_0_input)
+
+    node_1_input = (input_data * weights['node_1']).sum()
+    node_1_output = relu(node_1_input)
+
+    hidden_layer_values = np.array([node_0_output, node_1_output])
+    input_to_final_layer = (hidden_layer_values * weights['output']).sum()
+    model_output = relu(input_to_final_layer)
+    
+    return(model_output)
+#End done by DataCamp
+
+
 # The data point you will make a prediction for
 input_data = np.array([0, 3])
 
