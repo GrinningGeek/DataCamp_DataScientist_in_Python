@@ -1,13 +1,19 @@
 '''
 Making multiple updates to weights
 
-You're now going to make multiple updates so you can dramatically improve your model weights, and see how the predictions improve with each update.
+You're now going to make multiple updates so you can dramatically improve your 
+model weights, and see how the predictions improve with each update.
 
-To keep your code clean, there is a pre-loaded get_slope() function that takes input_data, target, and weights as arguments. There is also a get_mse() function that takes the same arguments. The input_data, target, and weights have been pre-loaded.
+To keep your code clean, there is a pre-loaded get_slope() function that takes 
+input_data, target, and weights as arguments. There is also a get_mse() 
+function that takes the same arguments. The input_data, target, and weights 
+have been pre-loaded.
 
-This network does not have any hidden layers, and it goes directly from the input (with 3 nodes) to an output node. Note that weights is a single array.
+This network does not have any hidden layers, and it goes directly from the 
+input (with 3 nodes) to an output node. Note that weights is a single array.
 
-We have also pre-loaded matplotlib.pyplot, and the error history will be plotted after you have done your gradient descent steps.
+We have also pre-loaded matplotlib.pyplot, and the error history will be 
+plotted after you have done your gradient descent steps.
 
 INSTRUCTIONS
 100XP
@@ -16,10 +22,38 @@ INSTRUCTIONS
 Using a for loop to iteratively update weights:
 Calculate the slope using the get_slope() function.
 Update the weights using a learning rate of 0.01.
-Calculate the mean squared error (mse) with the updated weights using the get_mse() function.
+Calculate the mean squared error (mse) with the updated weights using the 
+get_mse() function.
 Append mse to mse_hist.
 Hit 'Submit Answer' to visualize mse_hist. What trend do you notice?
 '''
+#Done by DataCamp
+import numpy as np
+import matplotlib.pyplot as plt
+
+input_data = np.array([1, 2, 3])
+
+weights = np.array([0, 2, 1])
+
+target = 0
+
+def get_slope(input_data, target, weights):
+    error = get_error(input_data, target, weights)
+    slope = 2 * input_data * error
+    return(slope)
+    
+def get_error(input_data, target, weights):
+    preds = (weights * input_data).sum()
+    error = preds - target
+    return(error)
+    
+def get_mse(input_data, target, weights):
+    errors = get_error(input_data, target, weights)
+    mse = np.mean(errors**2)
+    return(mse)
+
+#End done by DataCamp
+
 n_updates = 20
 mse_hist = []
 
